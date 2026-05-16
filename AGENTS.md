@@ -10,13 +10,13 @@
 
 ## Key commands
 
-| Command | Action |
-|---|---|
-| `npm run dev` | Vite dev server (HMR) |
-| `npm run build` | Production build (CF Workers) |
-| `npm run preview` | Preview production build |
-| `npm run lint` | ESLint (`eslint .`) |
-| `npm run format` | Prettier (`prettier --write .`) |
+| Command           | Action                          |
+| ----------------- | ------------------------------- |
+| `npm run dev`     | Vite dev server (HMR)           |
+| `npm run build`   | Production build (CF Workers)   |
+| `npm run preview` | Preview production build        |
+| `npm run lint`    | ESLint (`eslint .`)             |
+| `npm run format`  | Prettier (`prettier --write .`) |
 
 No test framework is configured. No CI config.
 
@@ -29,6 +29,7 @@ No test framework is configured. No CI config.
 ## Routes
 
 All in `src/routes/`:
+
 - `__root.tsx` — root shell (dark theme, Outlet + QueryClientProvider, 404/error components)
 - `index.tsx` — homepage (Hero, Solutions, CTA)
 - `tools.tsx` — `/tools` (filterable grid)

@@ -11,7 +11,9 @@ export function NeuralBackground() {
     if (!ctx) return;
 
     let raf = 0;
-    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let w = 0,
+      h = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     type P = { x: number; y: number; vx: number; vy: number };
     let pts: P[] = [];
@@ -36,15 +38,18 @@ export function NeuralBackground() {
     const tick = () => {
       ctx.clearRect(0, 0, w, h);
       for (const p of pts) {
-        p.x += p.vx; p.y += p.vy;
+        p.x += p.vx;
+        p.y += p.vy;
         if (p.x < 0 || p.x > w) p.vx *= -1;
         if (p.y < 0 || p.y > h) p.vy *= -1;
       }
       // edges
       for (let i = 0; i < pts.length; i++) {
         for (let j = i + 1; j < pts.length; j++) {
-          const a = pts[i], b = pts[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
+          const a = pts[i],
+            b = pts[j];
+          const dx = a.x - b.x,
+            dy = a.y - b.y;
           const d2 = dx * dx + dy * dy;
           if (d2 < 130 * 130) {
             const alpha = 1 - Math.sqrt(d2) / 130;

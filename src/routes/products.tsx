@@ -9,7 +9,11 @@ export const Route = createFileRoute("/products")({
   head: () => ({
     meta: [
       { title: "Products — Codehence" },
-      { name: "description", content: "DocSense and ChatStack — the AI SaaS suite Codehence is building in-house. RAG over documents, branded AI chat for your product." },
+      {
+        name: "description",
+        content:
+          "DocSense and ChatStack — the AI SaaS suite Codehence is building in-house. RAG over documents, branded AI chat for your product.",
+      },
       { property: "og:title", content: "Codehence Products" },
       { property: "og:description", content: "AI SaaS apps we're building in-house." },
     ],
@@ -18,8 +22,8 @@ export const Route = createFileRoute("/products")({
 });
 
 const statusStyles: Record<ProductStatus, string> = {
-  "Live": "border-emerald-400/40 bg-emerald-400/10 text-emerald-300",
-  "Beta": "border-primary/40 bg-primary/10 text-primary",
+  Live: "border-emerald-400/40 bg-emerald-400/10 text-emerald-300",
+  Beta: "border-primary/40 bg-primary/10 text-primary",
   "In development": "border-amber-400/40 bg-amber-400/10 text-amber-300",
   "Coming soon": "border-violet-400/40 bg-violet-400/10 text-violet-300",
   "Idea stage": "border-border bg-muted/40 text-muted-foreground",
@@ -73,7 +77,10 @@ function ProductsPage() {
 
               <div className="mt-5 flex flex-wrap gap-1.5">
                 {p.features.map((f) => (
-                  <span key={f} className="rounded-full bg-muted px-2.5 py-1 text-[11px] text-muted-foreground">
+                  <span
+                    key={f}
+                    className="rounded-full bg-muted px-2.5 py-1 text-[11px] text-muted-foreground"
+                  >
                     {f}
                   </span>
                 ))}
@@ -106,7 +113,8 @@ function ProductsPage() {
               </div>
               <h3 className="mt-1 text-lg font-semibold">Ideas on the back burner</h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                We won't build any of these until DocSense and ChatStack are live. But they're on the list.
+                We won't build any of these until DocSense and ChatStack are live. But they're on
+                the list.
               </p>
             </div>
           </div>

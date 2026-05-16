@@ -91,7 +91,10 @@ function Index() {
               <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {p.features.map((f) => (
-                  <span key={f} className="rounded-full bg-muted px-2.5 py-1 text-[11px] text-muted-foreground">
+                  <span
+                    key={f}
+                    className="rounded-full bg-muted px-2.5 py-1 text-[11px] text-muted-foreground"
+                  >
                     {f}
                   </span>
                 ))}
@@ -177,13 +180,20 @@ function Index() {
               Have an idea? <span className="text-gradient">Let's build it.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-              Book a free 30-minute consultation. No pitch, just a real conversation about your product.
+              Book a free 30-minute consultation. No pitch, just a real conversation about your
+              product.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="rounded-xl bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-glow hover:scale-105 transition-transform">
+              <Link
+                to="/contact"
+                className="rounded-xl bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-glow hover:scale-105 transition-transform"
+              >
                 Book Consultation
               </Link>
-              <Link to="/products" className="rounded-xl border border-border glass px-6 py-3 text-sm font-semibold hover:border-primary/40">
+              <Link
+                to="/products"
+                className="rounded-xl border border-border glass px-6 py-3 text-sm font-semibold hover:border-primary/40"
+              >
                 See our work
               </Link>
             </div>

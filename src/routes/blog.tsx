@@ -4,15 +4,22 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Section, SectionHeader } from "@/components/Section";
 import { Mail, Check, Loader2, AlertCircle, ArrowRight } from "lucide-react";
-import { subscribeToNewsletter } from "@/lib/newsletter.server";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
       { title: "Blog — Codehence" },
-      { name: "description", content: "Field notes from building AI SaaS products — shipping playbooks, stack decisions, and honest postmortems. Coming soon." },
+      {
+        name: "description",
+        content:
+          "Field notes from building AI SaaS products — shipping playbooks, stack decisions, and honest postmortems. Coming soon.",
+      },
       { property: "og:title", content: "Codehence Blog — Coming Soon" },
-      { property: "og:description", content: "Real lessons from shipping AI SaaS. Subscribe to get the first essays." },
+      {
+        property: "og:description",
+        content: "Real lessons from shipping AI SaaS. Subscribe to get the first essays.",
+      },
     ],
   }),
   component: BlogPage,
@@ -108,7 +115,10 @@ function BlogPage() {
                 You're on the list — talk soon.
               </motion.div>
             ) : (
-              <form onSubmit={onSubmit} className="mx-auto mt-7 flex max-w-md flex-col gap-3 sm:flex-row">
+              <form
+                onSubmit={onSubmit}
+                className="mx-auto mt-7 flex max-w-md flex-col gap-3 sm:flex-row"
+              >
                 <input
                   name="email"
                   type="email"
@@ -132,9 +142,13 @@ function BlogPage() {
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:scale-[1.02] disabled:opacity-70"
                 >
                   {state.kind === "loading" ? (
-                    <><Loader2 className="h-4 w-4 animate-spin" /> Subscribing…</>
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" /> Subscribing…
+                    </>
                   ) : (
-                    <>Subscribe <ArrowRight className="h-4 w-4" /></>
+                    <>
+                      Subscribe <ArrowRight className="h-4 w-4" />
+                    </>
                   )}
                 </button>
               </form>

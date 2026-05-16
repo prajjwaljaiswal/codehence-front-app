@@ -42,15 +42,16 @@ export function SectionHeader({
       <h2 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
         {title.split(" ").map((w, i) =>
           i % 3 === 1 ? (
-            <span key={i} className="text-gradient"> {w} </span>
+            <span key={i} className="text-gradient">
+              {" "}
+              {w}{" "}
+            </span>
           ) : (
             <span key={i}> {w} </span>
           ),
         )}
       </h2>
-      {subtitle && (
-        <p className="mt-4 text-pretty text-lg text-muted-foreground">{subtitle}</p>
-      )}
+      {subtitle && <p className="mt-4 text-pretty text-lg text-muted-foreground">{subtitle}</p>}
     </motion.div>
   );
 }

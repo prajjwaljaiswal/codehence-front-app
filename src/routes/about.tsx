@@ -26,7 +26,11 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Codehence" },
-      { name: "description", content: "Codehence is an AI-focused SaaS development studio founded by Prajjwal Jaiswal — building intelligent products and shipping AI for real businesses." },
+      {
+        name: "description",
+        content:
+          "Codehence is an AI-focused SaaS development studio founded by Prajjwal Jaiswal — building intelligent products and shipping AI for real businesses.",
+      },
       { property: "og:title", content: "About Codehence" },
       { property: "og:description", content: "We're building the future of AI-powered SaaS." },
     ],
@@ -215,9 +219,7 @@ function AboutPage() {
         >
           <div className="absolute inset-0 bg-hero-glow opacity-50" />
           <div className="relative">
-            <h2 className="text-balance text-3xl font-bold md:text-5xl">
-              Want to build with us?
-            </h2>
+            <h2 className="text-balance text-3xl font-bold md:text-5xl">Want to build with us?</h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
               Whether you're shipping your first MVP or your tenth product, we'd love to hear what
               you're working on.

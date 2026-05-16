@@ -48,17 +48,41 @@ export function Footer() {
           <div>
             <h4 className="mb-3 text-sm font-semibold">Product</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/services" className="hover:text-foreground">Services</Link></li>
-              <li><Link to="/products" className="hover:text-foreground">Products</Link></li>
-              <li><Link to="/case-studies" className="hover:text-foreground">Case studies</Link></li>
-              <li><Link to="/blog" className="hover:text-foreground">Blog</Link></li>
+              <li>
+                <Link to="/services" className="hover:text-foreground">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/products" className="hover:text-foreground">
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/case-studies" className="hover:text-foreground">
+                  Case studies
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="hover:text-foreground">
+                  Blog
+                </Link>
+              </li>
             </ul>
           </div>
           <div>
             <h4 className="mb-3 text-sm font-semibold">Company</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/about" className="hover:text-foreground">About</Link></li>
-              <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+              <li>
+                <Link to="/about" className="hover:text-foreground">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-foreground">
+                  Contact
+                </Link>
+              </li>
               <li>
                 <a href={`mailto:${site.contactEmail}`} className="hover:text-foreground">
                   {site.contactEmail}

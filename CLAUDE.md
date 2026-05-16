@@ -20,6 +20,7 @@ No test framework is configured; do not invent a test command. No CI config.
 TanStack Start v1 (SSR) on Cloudflare Workers, React 19, file-based routing, Tailwind 4 + shadcn/ui (new-york style, Radix primitives). TypeScript with `@/*` → `./src/*`. shadcn CLI additions land in `src/components/ui/` per `components.json`; hand-written app components live one level up in `src/components/`.
 
 Request flow:
+
 1. **`src/server.ts`** — CF Worker entry. Wraps TanStack Start's SSR handler with `normalizeCatastrophicSsrResponse`, which recovers real errors h3 swallowed into generic `{"unhandled":true,"message":"HTTPError"}` 500s by reading captures from `src/lib/error-capture.ts` and returning a branded static HTML error page (`src/lib/error-page.ts`).
 2. **`src/start.ts`** — exports `startInstance` with error middleware.
 3. **`src/router.tsx`** — `getRouter()` builds the router and QueryClient.

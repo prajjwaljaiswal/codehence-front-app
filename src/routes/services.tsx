@@ -18,7 +18,11 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services — Codehence" },
-      { name: "description", content: "AI SaaS development, MVP builds, AI integrations, workflow automation, smart dashboards, and enterprise AI for businesses ready to ship." },
+      {
+        name: "description",
+        content:
+          "AI SaaS development, MVP builds, AI integrations, workflow automation, smart dashboards, and enterprise AI for businesses ready to ship.",
+      },
       { property: "og:title", content: "Codehence Services" },
       { property: "og:description", content: "Everything you need to ship an AI SaaS." },
     ],
@@ -228,16 +232,31 @@ function ServicesPage() {
           <h3 className="text-lg font-semibold">How pricing works</h3>
           <div className="mt-3 grid gap-4 text-sm text-muted-foreground md:grid-cols-3">
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-primary">Fixed scope, fixed price</div>
-              <p className="mt-1">After a short discovery call, you get a written proposal with a flat price and a clear deliverable. No surprise invoices.</p>
+              <div className="text-xs font-semibold uppercase tracking-wider text-primary">
+                Fixed scope, fixed price
+              </div>
+              <p className="mt-1">
+                After a short discovery call, you get a written proposal with a flat price and a
+                clear deliverable. No surprise invoices.
+              </p>
             </div>
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-primary">50 / 50 split</div>
-              <p className="mt-1">Half up front to start, half on delivery. We don't ask for the full amount before any work happens.</p>
+              <div className="text-xs font-semibold uppercase tracking-wider text-primary">
+                50 / 50 split
+              </div>
+              <p className="mt-1">
+                Half up front to start, half on delivery. We don't ask for the full amount before
+                any work happens.
+              </p>
             </div>
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-primary">Discovery is free</div>
-              <p className="mt-1">The first 30-minute call costs nothing. If we're not the right fit, we'll tell you who is.</p>
+              <div className="text-xs font-semibold uppercase tracking-wider text-primary">
+                Discovery is free
+              </div>
+              <p className="mt-1">
+                The first 30-minute call costs nothing. If we're not the right fit, we'll tell you
+                who is.
+              </p>
             </div>
           </div>
         </motion.div>
@@ -255,7 +274,8 @@ function ServicesPage() {
               Not sure which one fits?
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-              Book a free 30-minute consultation and we'll point you in the right direction — even if it's not us.
+              Book a free 30-minute consultation and we'll point you in the right direction — even
+              if it's not us.
             </p>
             <Link
               to="/contact"

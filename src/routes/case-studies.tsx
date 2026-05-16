@@ -8,7 +8,11 @@ export const Route = createFileRoute("/case-studies")({
   head: () => ({
     meta: [
       { title: "Case Studies — Codehence" },
-      { name: "description", content: "Real engagements, real outcomes — how Codehence ships AI SaaS for founders and businesses. Detailed case studies coming soon." },
+      {
+        name: "description",
+        content:
+          "Real engagements, real outcomes — how Codehence ships AI SaaS for founders and businesses. Detailed case studies coming soon.",
+      },
       { property: "og:title", content: "Codehence Case Studies" },
       { property: "og:description", content: "How we ship AI SaaS for founders and businesses." },
     ],
@@ -106,7 +110,10 @@ function CaseStudiesPage() {
               <p className="mt-2 flex-1 text-sm text-muted-foreground">{s.summary}</p>
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {s.tags.map((t) => (
-                  <span key={t} className="rounded-full bg-muted px-2.5 py-1 text-[11px] text-muted-foreground">
+                  <span
+                    key={t}
+                    className="rounded-full bg-muted px-2.5 py-1 text-[11px] text-muted-foreground"
+                  >
                     {t}
                   </span>
                 ))}

@@ -35,7 +35,9 @@ export const sendContactMessage = createServerFn({ method: "POST" })
     const from = process.env.CONTACT_FROM_EMAIL;
 
     if (!apiKey || !to || !from) {
-      console.error("Contact form misconfigured: missing RESEND_KEY / CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL");
+      console.error(
+        "Contact form misconfigured: missing RESEND_KEY / CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL",
+      );
       throw new Error("Contact form is misconfigured. Please email us directly.");
     }
 
