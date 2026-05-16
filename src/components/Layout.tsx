@@ -1,7 +1,6 @@
 import { type ReactNode } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
-import { Chatbot } from "./Chatbot";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -9,7 +8,6 @@ export function Layout({ children }: { children: ReactNode }) {
       <Navbar />
       <main>{children}</main>
       <Footer />
-      <Chatbot />
     </div>
   );
 }

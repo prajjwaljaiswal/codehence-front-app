@@ -3,29 +3,62 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Section, SectionHeader } from "@/components/Section";
-import { Mail, Linkedin, MapPin, Clock, Check, Send, Loader2 } from "lucide-react";
+import { Mail, Linkedin, MapPin, Clock, Check, Send, Loader2, AlertCircle } from "lucide-react";
+import { sendContactMessage } from "@/lib/contact.server";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Codehence" },
-      { name: "description", content: "Talk to the Codehence team about AI tools, model training, fine-tuning, and partnerships." },
+      { name: "description", content: "Book a free 30-minute consultation with the Codehence team — SaaS development, MVP builds, AI integrations, and workflow automation." },
       { property: "og:title", content: "Contact Codehence" },
-      { property: "og:description", content: "We're here to help you ship AI." },
+      { property: "og:description", content: "Book a free consultation. We'll listen first, propose later." },
     ],
   }),
   component: ContactPage,
 });
 
-const SUBJECTS = ["General Inquiry", "Partnership", "Technical Support", "Demo Request"];
+const SUBJECTS = [
+  "Build a SaaS product",
+  "MVP development",
+  "AI integration",
+  "Workflow automation",
+  "Enterprise inquiry",
+  "General",
+];
+
+type FormState =
+  | { kind: "idle" }
+  | { kind: "loading" }
+  | { kind: "success" }
+  | { kind: "error"; message: string };
 
 function ContactPage() {
-  const [state, setState] = useState<"idle" | "loading" | "success">("idle");
+  const [state, setState] = useState<FormState>({ kind: "idle" });
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setState("loading");
-    setTimeout(() => setState("success"), 1200);
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      company: String(formData.get("company") ?? "").trim(),
+      subject: String(formData.get("subject") ?? "").trim(),
+      message: String(formData.get("message") ?? "").trim(),
+      website: String(formData.get("website") ?? ""),
+    };
+
+    setState({ kind: "loading" });
+    try {
+      await sendContactMessage({ data: payload });
+      setState({ kind: "success" });
+    } catch (err) {
+      const message =
+        err instanceof Error && err.message
+          ? err.message
+          : "Something went wrong. Please email us directly.";
+      setState({ kind: "error", message });
+    }
   };
 
   return (
@@ -34,7 +67,7 @@ function ContactPage() {
         <SectionHeader
           eyebrow="Contact"
           title="Let's build something intelligent"
-          subtitle="Whether you're exploring tools, planning a deployment, or chasing a custom integration — we're here."
+          subtitle="Book a free 30-minute consultation. We'll listen first, propose later."
         />
 
         <div className="grid gap-8 lg:grid-cols-2">
@@ -50,15 +83,15 @@ function ContactPage() {
             <div className="relative">
               <h3 className="text-2xl font-bold">Get in touch</h3>
               <p className="mt-2 text-muted-foreground">
-                Our team typically responds within one business day.
+                We typically reply within one business day.
               </p>
 
               <div className="mt-8 space-y-5">
                 {[
-                  { icon: Mail, label: "Email", value: "hello@codehence.ai" },
-                  { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/company/codehence" },
-                  { icon: MapPin, label: "Location", value: "Serving clients globally · HQ in India" },
-                  { icon: Clock, label: "Support", value: "Mon–Fri · 9 AM – 8 PM IST" },
+                  { icon: Mail, label: "Email", value: "prajjwal@codehence.com" },
+                  { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/prajjwal-jaiswal" },
+                  { icon: MapPin, label: "Location", value: "Remote · HQ in India" },
+                  { icon: Clock, label: "Hours", value: "Mon–Fri · 9 AM – 8 PM IST" },
                 ].map((item, i) => (
                   <motion.div
                     key={item.label}
@@ -80,11 +113,12 @@ function ContactPage() {
               </div>
 
               <div className="mt-8 rounded-2xl border border-border bg-card/50 p-4">
-                <div className="text-xs font-semibold uppercase tracking-wider text-primary">Map</div>
-                <div className="mt-2 text-sm">🌍 Bengaluru · Mumbai · Remote</div>
-                <div className="mt-1 text-xs text-muted-foreground">
-                  Working with teams across 30+ countries.
-                </div>
+                <div className="text-xs font-semibold uppercase tracking-wider text-primary">What to expect</div>
+                <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+                  <li>1. We reply within 1 business day.</li>
+                  <li>2. If it's a fit, we schedule a 30-min call.</li>
+                  <li>3. You get a scoped proposal within 3 days.</li>
+                </ul>
               </div>
             </div>
           </motion.div>
@@ -98,7 +132,7 @@ function ContactPage() {
             transition={{ duration: 0.6 }}
             className="glass-strong relative rounded-3xl p-8"
           >
-            {state === "success" ? (
+            {state.kind === "success" ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -107,13 +141,13 @@ function ContactPage() {
                 <div className="grid h-16 w-16 place-items-center rounded-full bg-gradient-primary shadow-glow">
                   <Check className="h-8 w-8 text-primary-foreground" />
                 </div>
-                <h3 className="mt-6 text-2xl font-bold">Message received!</h3>
+                <h3 className="mt-6 text-2xl font-bold">Message received</h3>
                 <p className="mt-2 max-w-sm text-muted-foreground">
-                  Thanks for reaching out. A Codehence specialist will reply within 1 business day.
+                  Thanks for reaching out. We'll reply within 1 business day.
                 </p>
                 <button
                   type="button"
-                  onClick={() => setState("idle")}
+                  onClick={() => setState({ kind: "idle" })}
                   className="mt-6 rounded-xl border border-border px-5 py-2 text-sm font-semibold hover:border-primary/40"
                 >
                   Send another
@@ -126,31 +160,46 @@ function ContactPage() {
 
                 <div className="mt-6 grid gap-4 md:grid-cols-2">
                   <Field label="Name" required>
-                    <input required className={inputCls} placeholder="Jane Doe" />
+                    <input name="name" required className={inputCls} placeholder="Jane Doe" maxLength={120} />
                   </Field>
                   <Field label="Email" required>
-                    <input required type="email" className={inputCls} placeholder="jane@company.com" />
+                    <input name="email" required type="email" className={inputCls} placeholder="jane@company.com" maxLength={200} />
                   </Field>
                 </div>
                 <Field label="Company (optional)" className="mt-4">
-                  <input className={inputCls} placeholder="Acme Corp" />
+                  <input name="company" className={inputCls} placeholder="Acme Corp" maxLength={160} />
                 </Field>
                 <Field label="Subject" required className="mt-4">
-                  <select required className={inputCls} defaultValue="">
+                  <select name="subject" required className={inputCls} defaultValue="">
                     <option value="" disabled>Select a topic…</option>
                     {SUBJECTS.map((s) => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </Field>
                 <Field label="Message" required className="mt-4">
-                  <textarea required rows={5} className={`${inputCls} resize-none`} placeholder="Tell us a bit about your project…" />
+                  <textarea name="message" required rows={5} minLength={10} maxLength={4000} className={`${inputCls} resize-none`} placeholder="Tell us a bit about your project…" />
                 </Field>
+
+                {/* Honeypot — visually hidden, kept out of the tab order. Bots fill it; humans don't. */}
+                <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                  <label>
+                    Website
+                    <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </div>
+
+                {state.kind === "error" && (
+                  <div className="mt-4 flex items-start gap-2 rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive-foreground">
+                    <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                    <span>{state.message}</span>
+                  </div>
+                )}
 
                 <button
                   type="submit"
-                  disabled={state === "loading"}
+                  disabled={state.kind === "loading"}
                   className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:scale-[1.02] disabled:opacity-70"
                 >
-                  {state === "loading" ? (
+                  {state.kind === "loading" ? (
                     <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</>
                   ) : (
                     <>Send message <Send className="h-4 w-4" /></>

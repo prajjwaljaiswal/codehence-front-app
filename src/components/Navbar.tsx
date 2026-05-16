@@ -4,8 +4,10 @@ import { Menu, X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
-  { to: "/tools", label: "Tools" },
-  { to: "/#solutions", label: "Solutions" },
+  { to: "/services", label: "Services" },
+  { to: "/products", label: "Products" },
+  { to: "/case-studies", label: "Work" },
+  { to: "/about", label: "About" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ];
@@ -44,13 +46,14 @@ export function Navbar() {
 
           <nav className="hidden items-center gap-1 md:flex">
             {links.map((l) => (
-              <a
+              <Link
                 key={l.to}
-                href={l.to}
+                to={l.to}
                 className="rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+                activeProps={{ className: "text-foreground" }}
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -59,7 +62,7 @@ export function Navbar() {
               to="/contact"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:scale-105"
             >
-              <span className="relative z-10">Get Started</span>
+              <span className="relative z-10">Book Consultation</span>
               <Sparkles className="relative z-10 h-4 w-4" />
             </Link>
           </div>
@@ -83,21 +86,22 @@ export function Navbar() {
             >
               <nav className="flex flex-col gap-1">
                 {links.map((l) => (
-                  <a
+                  <Link
                     key={l.to}
-                    href={l.to}
+                    to={l.to}
                     onClick={() => setOpen(false)}
                     className="rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                    activeProps={{ className: "text-foreground" }}
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 ))}
                 <Link
                   to="/contact"
                   onClick={() => setOpen(false)}
                   className="mt-2 rounded-xl bg-gradient-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground"
                 >
-                  Get Started
+                  Book Consultation
                 </Link>
               </nav>
             </motion.div>

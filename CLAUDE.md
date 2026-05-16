@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `npm run dev` — Vite dev server (HMR). Also regenerates `src/routeTree.gen.ts`.
 - `npm run build` — Production build targeting Cloudflare Workers.
+- `npm run build:dev` — Production build with `--mode development` (keeps dev env vars / unminified output for debugging deploys).
 - `npm run preview` — Preview the production build.
 - `npm run lint` — ESLint over the repo.
 - `npm run format` — Prettier write.
@@ -16,7 +17,7 @@ No test framework is configured; do not invent a test command. No CI config.
 
 ## Architecture
 
-TanStack Start v1 (SSR) on Cloudflare Workers, React 19, file-based routing, Tailwind 4 + shadcn/ui (new-york style, Radix primitives). TypeScript with `@/*` → `./src/*`.
+TanStack Start v1 (SSR) on Cloudflare Workers, React 19, file-based routing, Tailwind 4 + shadcn/ui (new-york style, Radix primitives). TypeScript with `@/*` → `./src/*`. shadcn CLI additions land in `src/components/ui/` per `components.json`; hand-written app components live one level up in `src/components/`.
 
 Request flow:
 1. **`src/server.ts`** — CF Worker entry. Wraps TanStack Start's SSR handler with `normalizeCatastrophicSsrResponse`, which recovers real errors h3 swallowed into generic `{"unhandled":true,"message":"HTTPError"}` 500s by reading captures from `src/lib/error-capture.ts` and returning a branded static HTML error page (`src/lib/error-page.ts`).

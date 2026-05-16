@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f0f1e"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5b8def"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="20%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#5b8def" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#5b8def" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="85%" cy="80%" r="60%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <g transform="translate(100, 130)">
+    <rect width="80" height="80" rx="18" fill="url(#accent)"/>
+    <path d="M40 22 L24 44 L40 66 M40 22 L56 44 L40 66" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <text x="200" y="195" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="44" font-weight="700" fill="white">Codehence</text>
+
+  <text x="100" y="335" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="74" font-weight="800" fill="white" letter-spacing="-1.5">
+    <tspan>Building AI-powered</tspan>
+    <tspan x="100" dy="92">SaaS products for</tspan>
+    <tspan x="100" dy="92">the future.</tspan>
+  </text>
+
+  <text x="100" y="585" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="26" font-weight="500" fill="#9ca3af">
+    AI SaaS development · MVP builds · AI integrations
+  </text>
+</svg>
