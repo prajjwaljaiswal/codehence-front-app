@@ -8,7 +8,7 @@ const SubscribeInput = z.object({
 });
 
 export const subscribeToNewsletter = createServerFn({ method: "POST" })
-  .validator((data: unknown) => SubscribeInput.parse(data))
+  .inputValidator((data: unknown) => SubscribeInput.parse(data))
   .handler(async ({ data }) => {
     if (data.website && data.website.length > 0) {
       return { ok: true } as const;

@@ -23,7 +23,7 @@ function escapeHtml(s: string): string {
 }
 
 export const sendContactMessage = createServerFn({ method: "POST" })
-  .validator((data: unknown) => ContactInput.parse(data))
+  .inputValidator((data: unknown) => ContactInput.parse(data))
   .handler(async ({ data }) => {
     // Drop honeypot hits silently — pretend success so bots don't probe further.
     if (data.website && data.website.length > 0) {
